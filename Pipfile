@@ -7,6 +7,10 @@ verify_ssl = true
 
 [packages]
 jupyter = "*"
+numpy = "*"
+pandas = "*"
+boto3 = "*"
+boto = "*"
 
 [requires]
 python_version = "3.7"
