@@ -17,7 +17,7 @@ def create_feature(transaction, portfolio, profile):
     # create feature from offer not related transactions
     offer_not_related_transaction = offer_not_related_transaction[['person', 'amount']]
     aggfunc = {
-        'amount': ['min', 'max', 'sum', 'mean', 'count']
+        'amount': ['min', 'max', 'sum', 'mean', 'count', 'std', 'median']
     }
     offer_not_related_transaction = offer_not_related_transaction.groupby('person')['amount'].agg(aggfunc).reset_index()
     offer_not_related_transaction.columns = ['_'.join(col) for col in offer_not_related_transaction.columns]
