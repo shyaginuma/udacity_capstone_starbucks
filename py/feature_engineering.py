@@ -30,12 +30,15 @@ def create_feature(transaction, portfolio, profile):
     # create other feature
     offer_related_transaction['became_member_on'] = pd.to_datetime(offer_related_transaction.became_member_on.map(lambda x: str(x)), format='%Y%m%d')
     offer_related_transaction['registar_year'] = offer_related_transaction['became_member_on'].dt.year
-    offer_related_transaction['registar_month'] = offer_related_transaction['became_member_on'].dt.month
+    #offer_related_transaction['registar_month'] = offer_related_transaction['became_member_on'].dt.month
     offer_related_transaction['scaled_difficulty'] = offer_related_transaction.difficulty / offer_related_transaction.duration
     offer_related_transaction['age_group'] = np.floor(offer_related_transaction.age/10) *10
     offer_related_transaction['buy_rate'] = offer_related_transaction.amount_sum / offer_related_transaction.income
     offer_related_transaction['reward_inpact'] = offer_related_transaction.reward / offer_related_transaction.income
     offer_related_transaction['income_growth_potential'] = offer_related_transaction.income / offer_related_transaction.age
+    offer_related_transaction['income_high'] = offer_related_transaction.income.map(lambda x: 1 if x > 75000 else 0)
+    offer_related_transaction['discount_ratio'] = offer_related_transaction.reward / offer_related_transaction.difficulty
+    offer_related_transaction.discount_ratio = offer_related_transaction.discount_ratio.fillna(0)
 
     # get dummy valuables
     offer_related_transaction = pd.get_dummies(offer_related_transaction, columns=['gender', 'registar_year'])
