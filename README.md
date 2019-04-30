@@ -59,3 +59,24 @@ jupyter notebook
 
 ## Project Organization <a name="constraction"></a>
 
+├── Pipfile
+├── Pipfile.lock
+├── docs
+├── notebooks
+└── py
+
+### Pipfile, Pipfile.lock
+
+These file capture libraries used in notebooks
+
+### docs
+
+The file in this repositry are Udacity provided description.
+
+### notebooks
+
+draft and publish notebooks
+
+### py
+
+functions that transform data used in the notebook
