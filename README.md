@@ -1,4 +1,4 @@
-# udacity_capstone_spark
+# udacity_capstone_starbucks
 
 This is capstone project of Udacity Data Scientist Nanodegree.  
 In many choices, I selected Starbucks project. Because I want to get the experience of facing real company problem with analytics and I like coffee.  
@@ -59,11 +59,13 @@ jupyter notebook
 
 ## Project Organization <a name="constraction"></a>
 
+```{}
 ├── Pipfile
 ├── Pipfile.lock
 ├── docs
 ├── notebooks
 └── py
+```
 
 ### Pipfile, Pipfile.lock
 
