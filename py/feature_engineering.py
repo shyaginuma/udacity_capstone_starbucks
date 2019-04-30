@@ -43,9 +43,6 @@ def create_feature(transaction, portfolio, profile):
     # get dummy valuables
     offer_related_transaction = pd.get_dummies(offer_related_transaction, columns=['gender', 'registar_year'])
 
-    # log scaling target valuable
-    offer_related_transaction['amount_log'] = np.log(offer_related_transaction.amount)
-
     # drop not needed columns
     offer_related_transaction = offer_related_transaction.drop([
         'became_member_on',
