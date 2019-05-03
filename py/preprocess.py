@@ -2,10 +2,19 @@ import pandas as pd
 import numpy as np
 import pandasql as ps
 
-# create features and clean data from portfolio.json
 def process_portfolio(portfolio):
+    '''
+    This function create features and clean data from portfolio.json
+
+    INPUT:
+        portfolio pandas.Dataframe: expect portfolio.json
+    OUTPUT:
+        portfolio pandas.Dataframe: transformed portfolio data
+    '''
+
     portfolio["num_channel"] = portfolio.channels.map(lambda x: len(x))
 
+    # create dummy valuable from channels
     channels = ['web', 'email', 'mobile', 'social']
     for channel in channels:
         col_name = 'channel_' + channel
@@ -15,8 +24,18 @@ def process_portfolio(portfolio):
 
     return portfolio
 
-# create features and clean data from transcript.json
 def process_transcript(transcript):
+    '''
+    This function create features and clean data from transcript.json
+
+    INPUT:
+        transcript pandas.Dataframe: expect transcript.json
+    OUTPUT:
+        transaction_transcript pandas.Dataframe: extract transaction event log from transcript.json
+        offer_received_transcript pandas.Dataframe: extract offer_received event log from transcript.json
+        offer_viewed_transcript pandas.Dataframe: extract offer_viewed event log from transcript.json
+        offer_completed_transcript pandas.Dataframe: extract offer_completed event log from transcript.json
+    '''
 
     # split dataframe by each event
     offer_received_transcript = transcript[transcript.event == 'offer received']
@@ -33,6 +52,15 @@ def process_transcript(transcript):
     return transaction_transcript, offer_received_transcript, offer_viewed_transcript, offer_completed_transcript
 
 def preprocess(portfolio, transcript):
+    '''
+    This function create flag to each transactions which shows the transaction is influenced by the offer
+
+    INPUT:
+        portfolio pandas.Dataframe: expect portfolio.json
+        transcript pandas.Dataframe: expect transcript.json
+    OUTPUT:
+        transaction_transcript pandas.Dataframe: extract transaction event log from transcript.json
+    '''
 
     # process portfolio, transcript
     portfolio = process_portfolio(portfolio)
