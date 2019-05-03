@@ -2,6 +2,18 @@ import pandas as pd
 import numpy as np
 
 def create_feature(transaction, portfolio, profile):
+    '''
+    This function create dataframe which can import to machine learning model and create some features.
+
+    INPUT:
+        transaction pandas.Dataframe: expected the output of preprocess.preprocess
+        portfolio pandas.Dataframe: expect portfolio.json
+        profile pandas.Dataframe: expect profile.json
+
+    OUTPUT:
+        offer_related_transaction pandas.Dataframe:
+            this dataframe can be imported machine learning model unique with person and offer_id, has target valuable.
+    '''
 
     # split data to offer related and not related
     offer_related_transaction = transaction[transaction.is_influenced_by_offer == 1]
